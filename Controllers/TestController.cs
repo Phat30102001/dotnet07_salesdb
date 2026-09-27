@@ -20,9 +20,9 @@ namespace SalesDB.Controllers
             // path
             var path = HttpContext.Request.Path;
 
-            // ?name=Nga
+            // ?name=Nga&age=10
             var queryString = HttpContext.Request.QueryString;
-            var nameQuery = HttpContext.Request.Query["name"].ToString();
+            var nameQuery = HttpContext.Request.Query["name"].ToString(); // nga
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"🟢 Demo");
@@ -64,6 +64,14 @@ namespace SalesDB.Controllers
 
             return Ok(new { Message = "Đã đọc body thành công" });
 
+        }
+        [HttpGet("exception")]
+        public async Task<ActionResult<string>> GetException(int a)
+        {
+            // int res = 20 / a;
+            // return Ok(res);
+            // chủ động trả lỗi
+            throw new KeyNotFoundException("Loi 404 tu tao de test");
         }
     }
 }
